@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">GetTableApp</string>
+
+    <!-- Errors messages -->
+    <string name="error_no_data">There are no data to display</string>
+    <string name="error_loading">Something went wrong. Please try again later</string>
+    <string name="error_no_connection">There is no internet connection. Please try again later</string>
+
+    <string name="empty_results">No search results</string>
+    <string name="title_retry">Try again</string>
+
 </resources>
