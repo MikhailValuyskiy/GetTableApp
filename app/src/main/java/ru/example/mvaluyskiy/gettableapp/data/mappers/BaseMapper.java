@@ -14,7 +14,7 @@ public abstract class BaseMapper<VO, DTO> {
 
     abstract DTO getFromVo(VO vo);
 
-    public Collection<VO> getFromDtoCollection(Collection<DTO> dtoCollection) {
+    public List<VO> getFromDtoCollection(Collection<DTO> dtoCollection) {
         List<VO> convertedVoList = new ArrayList<>();
         for (DTO dto : dtoCollection) {
             convertedVoList.add(getFromDto(dto));

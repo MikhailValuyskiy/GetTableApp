@@ -8,6 +8,7 @@ ext.retrofitVersion = '2.0.2'
 ext.butterknifeVersion = '8.5.1'
 ext.rxjavaVersion = '1.2.6'
 ext.gsonVersion = "2.0.2"
+ext.ormLiteVersion = '4.48'
 
 android {
     compileSdkVersion 25
@@ -55,6 +56,10 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$gsonVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$gsonVersion"
+
+    // Orm Lite
+    compile "com.j256.ormlite:ormlite-core:$ormLiteVersion"
+    compile "com.j256.ormlite:ormlite-android:$ormLiteVersion"
 
     testCompile 'junit:junit:4.12'
 }

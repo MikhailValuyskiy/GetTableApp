@@ -2,6 +2,8 @@ package ru.example.mvaluyskiy.gettableapp.data.mappers;
 
 import android.support.annotation.NonNull;
 
+import javax.inject.Inject;
+
 import ru.example.mvaluyskiy.gettableapp.data.dto.CustomerDto;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
 
@@ -10,6 +12,10 @@ import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
  */
 
 public class CustomerMapper extends BaseMapper<Customer, CustomerDto> {
+
+    @Inject
+    public CustomerMapper() {
+    }
 
     @Override
     Customer getFromDto(@NonNull CustomerDto customerDto) {

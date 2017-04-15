@@ -16,8 +16,8 @@ public class BasePresenter<View extends BaseView> {
     public static final BasePresenter INSTANCE = new BasePresenter();
     private View view;
     private final CompositeSubscription subscribers = new CompositeSubscription();
-    private Scheduler jobScheduler = Schedulers.io();
-    private Scheduler uiScheduler = AndroidSchedulers.mainThread();
+    protected Scheduler jobScheduler = Schedulers.io();
+    protected Scheduler uiScheduler = AndroidSchedulers.mainThread();
 
     public final void setView(View view) {
         if (this.view != null) {
@@ -30,9 +30,6 @@ public class BasePresenter<View extends BaseView> {
         return view;
     }
 
-    public void subscribe(Observable observable) {
-        observable.subscribe();
-    }
 
 
     public void onCreate() {
@@ -54,7 +51,7 @@ public class BasePresenter<View extends BaseView> {
     }
 
     public <T> void subscribe(Observable<T> observable, Subscriber<T> subscriber) {
-        subscribers.add(observable.subscribe(subscriber));
+        subscribers.add(observable.subscribeOn(jobScheduler).observeOn(uiScheduler,true).subscribe(subscriber));
     }
 
     protected void unsubsribe() {
