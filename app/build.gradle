@@ -1,5 +1,14 @@
 apply plugin: 'com.android.application'
 
+
+ext.playServicesVersion = '10.2.0'
+ext.supportVersion = '25.1.1'
+ext.daggerVersion = '2.9'
+ext.retrofitVersion = '2.0.2'
+ext.butterknifeVersion = '8.5.1'
+ext.rxjavaVersion = '1.2.6'
+ext.gsonVersion = "2.0.2"
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -24,6 +33,28 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.1'
+
+    // Support
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:design:$supportVersion"
+
+    // Butterknife
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    // Dagger 2
+    compile "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // RX Java
+    compile "io.reactivex:rxjava:$rxjavaVersion"
+    compile 'io.reactivex:rxandroid:1.2.1'
+
+    // Retrofit, Gson
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$gsonVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$gsonVersion"
+
     testCompile 'junit:junit:4.12'
 }
