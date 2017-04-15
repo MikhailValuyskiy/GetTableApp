@@ -32,5 +32,4 @@ public class LocalRepository implements GetTableDataStore {
             return null;
         }
     }
-
 }

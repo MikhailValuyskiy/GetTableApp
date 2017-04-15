@@ -11,5 +11,5 @@ import rx.Observable;
 
 public interface GetTableDataStore {
 
-    public Observable<List<Customer>> getCustomers();
+    Observable<List<Customer>> getCustomers();
 }
