@@ -3,6 +3,7 @@ package ru.example.mvaluyskiy.gettableapp;
 import android.app.Application;
 
 import ru.example.mvaluyskiy.gettableapp.di.AppComponent;
+import ru.example.mvaluyskiy.gettableapp.di.DaggerAppComponent;
 import ru.example.mvaluyskiy.gettableapp.di.modules.AppModule;
 import ru.example.mvaluyskiy.gettableapp.di.modules.NetworkModule;
 
