@@ -1,5 +1,6 @@
 package ru.example.mvaluyskiy.gettableapp.presentation.tables;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.example.mvaluyskiy.gettableapp.GetTableApplication;
 import ru.example.mvaluyskiy.gettableapp.R;
+import ru.example.mvaluyskiy.gettableapp.background.TableRefreshService;
 import ru.example.mvaluyskiy.gettableapp.base.base_fragments.BaseStateFragment;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Table;
 
@@ -46,6 +48,7 @@ public class TablesFragment extends BaseStateFragment<TablesPresenter> implement
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GetTableApplication.getAppComponent().inject(this);
+        getActivity().startService(new Intent(getActivity(), TableRefreshService.class));
     }
 
     @Nullable

@@ -17,4 +17,6 @@ public interface AppDataStore {
     Observable<List<Table>> getTables();
 
     void bookTable(Table table);
+
+    void clearReservations();
 }

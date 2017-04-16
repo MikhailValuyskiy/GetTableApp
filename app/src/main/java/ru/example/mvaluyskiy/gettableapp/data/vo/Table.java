@@ -5,16 +5,20 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.UUID;
 
+import ru.example.mvaluyskiy.gettableapp.data.dao.TableDao;
+
+import static ru.example.mvaluyskiy.gettableapp.data.dao.TableDao.TABLES_TABLE_NAME;
+
 /**
  * Created by m.valuyskiy on 16.04.17.
  */
 
 
-@DatabaseTable(tableName = "table")
+@DatabaseTable(tableName = TABLES_TABLE_NAME)
 public class Table {
     @DatabaseField(id = true)
     private UUID id;
-    @DatabaseField(columnName = "isFree")
+    @DatabaseField(columnName = TableDao.COLUMN_STATUS)
     private boolean isFree;
 
     public Table() {

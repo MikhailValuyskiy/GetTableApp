@@ -14,6 +14,9 @@ import ru.example.mvaluyskiy.gettableapp.data.vo.Table;
 
 public class TableDao extends BaseDao<Table, Integer> {
 
+    public static final String TABLES_TABLE_NAME = "table";
+    public static final String COLUMN_STATUS = "is_free";
+
     public TableDao(ConnectionSource connectionSource, Class<Table> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }

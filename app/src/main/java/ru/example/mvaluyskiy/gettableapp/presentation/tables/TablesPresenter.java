@@ -28,12 +28,34 @@ public class TablesPresenter extends BaseStatePresenter<TablesView> {
         loadTables();
     }
 
+    void refreshTables() {
+        getView().setPendingState();
+        subscribe(appRepository.getCachedTables(), new Subscriber<List<Table>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+                getView().showErrorMessage(e);
+            }
+
+            @Override
+            public void onNext(List<Table> tables) {
+                getView().setSuccessState();
+                getView().onTablesLoaded(tables);
+            }
+        });
+    }
+
     @Override
     public void onRetry() {
         loadTables();
     }
 
-    public void bookTable(Table table) {
+    void bookTable(Table table) {
         appRepository.bookTable(table);
     }
 

@@ -3,19 +3,21 @@ package ru.example.mvaluyskiy.gettableapp.data.vo;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import ru.example.mvaluyskiy.gettableapp.data.dao.CustomerDao;
+
 /**
  * Created by m.valuyskiy on 15.04.17.
  */
 
 
-@DatabaseTable(tableName = "customer")
+@DatabaseTable(tableName = CustomerDao.CUSTOMER_TABLE_NAME)
 public class Customer {
 
     @DatabaseField(id = true)
     private long id;
-    @DatabaseField(columnName = "first_name")
+    @DatabaseField(columnName = CustomerDao.COLUMN_FIRST_NAME)
     private String firstName;
-    @DatabaseField(columnName = "last_name")
+    @DatabaseField(columnName = CustomerDao.COLUMN_LAST_NAME)
     private String lastName;
 
     public String getFirstName() {

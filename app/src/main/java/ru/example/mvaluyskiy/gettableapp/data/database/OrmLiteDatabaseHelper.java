@@ -74,5 +74,6 @@ public class OrmLiteDatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void close() {
         super.close();
         customerDao = null;
+        tableDao = null;
     }
 }

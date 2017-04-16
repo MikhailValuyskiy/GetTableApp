@@ -83,4 +83,9 @@ public class RemoteRepository implements AppDataStore {
     public void bookTable(Table table) {
         // TODO Sent booking info to the api. Currently the api doesn't allow to do it.
     }
+
+    @Override
+    public void clearReservations() {
+        // TODO clear reservations through api. Currently api doesn't allow todo it
+    }
 }

@@ -1,11 +1,14 @@
 package ru.example.mvaluyskiy.gettableapp.data.repository;
 
+import com.j256.ormlite.stmt.UpdateBuilder;
+
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import ru.example.mvaluyskiy.gettableapp.GetTableApplication;
+import ru.example.mvaluyskiy.gettableapp.data.dao.TableDao;
 import ru.example.mvaluyskiy.gettableapp.data.database.OrmLiteDatabaseHelper;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Table;
@@ -69,5 +72,18 @@ public class LocalRepository implements AppDataStore {
             e.printStackTrace();
         }
         return true;
+    }
+
+    @Override
+    public void clearReservations() {
+        try {
+            UpdateBuilder<Table, Integer> tableUpdateBuilder = ormLiteDatabaseHelper.getTableDao().updateBuilder();
+            tableUpdateBuilder.updateColumnValue(TableDao.COLUMN_STATUS, false);
+            tableUpdateBuilder.where().eq(TableDao.COLUMN_STATUS, true);
+            tableUpdateBuilder.update();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

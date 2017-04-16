@@ -14,6 +14,10 @@ import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
 
 public class CustomerDao extends BaseDao<Customer, Integer> {
 
+    public static final String CUSTOMER_TABLE_NAME = "customer";
+    public static final String COLUMN_FIRST_NAME = "first_name";
+    public static final String COLUMN_LAST_NAME = "last_name";
+
     public CustomerDao(ConnectionSource connectionSource, Class<Customer> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }

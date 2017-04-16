@@ -44,7 +44,16 @@ public class AppRepository implements AppDataStore {
         return localRepository.isCustomersEmpty();
     }
 
-    public boolean isTableListEmpty(){
+    public boolean isTableListEmpty() {
         return localRepository.isTableListEmpty();
+    }
+
+    public Observable<List<Table>> getCachedTables() {
+        return localRepository.getTables();
+    }
+
+    @Override
+    public void clearReservations() {
+        localRepository.clearReservations();
     }
 }
