@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import ru.example.mvaluyskiy.gettableapp.data.database.OrmLiteDatabaseHelper;
-import ru.example.mvaluyskiy.gettableapp.data.repository.GetTableAppRepository;
+import ru.example.mvaluyskiy.gettableapp.data.repository.AppRepository;
 import ru.example.mvaluyskiy.gettableapp.data.repository.LocalRepository;
 import ru.example.mvaluyskiy.gettableapp.data.repository.RemoteRepository;
 
@@ -38,7 +38,7 @@ public class DataModule {
 
     @Provides
     @Singleton
-    GetTableAppRepository provideGetTableRepository() {
-        return new GetTableAppRepository();
+    AppRepository provideGetTableRepository() {
+        return new AppRepository();
     }
 }

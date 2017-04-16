@@ -10,7 +10,9 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 
 import ru.example.mvaluyskiy.gettableapp.data.dao.CustomerDao;
+import ru.example.mvaluyskiy.gettableapp.data.dao.TableDao;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
+import ru.example.mvaluyskiy.gettableapp.data.vo.Table;
 
 /**
  * Created by m.valuyskiy on 16.04.17.
@@ -21,6 +23,7 @@ public class OrmLiteDatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private CustomerDao customerDao = null;
+    private TableDao tableDao = null;
 
     public OrmLiteDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,6 +33,7 @@ public class OrmLiteDatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, Customer.class);
+            TableUtils.createTable(connectionSource, Table.class);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -42,6 +46,7 @@ public class OrmLiteDatabaseHelper extends OrmLiteSqliteOpenHelper {
         updateHelper.loadData(this);
         try {
             TableUtils.dropTable(connectionSource, Customer.class, true);
+            TableUtils.dropTable(connectionSource, Table.class, true);
             onCreate(db, connectionSource);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -53,7 +58,16 @@ public class OrmLiteDatabaseHelper extends OrmLiteSqliteOpenHelper {
         if (customerDao == null) {
             customerDao = new CustomerDao(getConnectionSource(), Customer.class);
         }
+
         return customerDao;
+    }
+
+    public TableDao getTableDao() throws SQLException {
+        if (tableDao == null) {
+            tableDao = new TableDao(getConnectionSource(), Table.class);
+        }
+
+        return tableDao;
     }
 
     @Override

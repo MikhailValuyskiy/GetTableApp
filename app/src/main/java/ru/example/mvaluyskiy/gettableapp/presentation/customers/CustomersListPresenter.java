@@ -1,13 +1,11 @@
 package ru.example.mvaluyskiy.gettableapp.presentation.customers;
 
-import android.util.Log;
-
 import java.util.List;
 
 import javax.inject.Inject;
 
 import ru.example.mvaluyskiy.gettableapp.base.base_presenters.BaseStatePresenter;
-import ru.example.mvaluyskiy.gettableapp.data.repository.GetTableAppRepository;
+import ru.example.mvaluyskiy.gettableapp.data.repository.AppRepository;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
 import rx.Subscriber;
 
@@ -18,7 +16,7 @@ import rx.Subscriber;
 public class CustomersListPresenter extends BaseStatePresenter<CustomersView> {
 
     @Inject
-    GetTableAppRepository repository;
+    AppRepository repository;
 
     @Inject
     public CustomersListPresenter() {
@@ -45,9 +43,11 @@ public class CustomersListPresenter extends BaseStatePresenter<CustomersView> {
 
             @Override
             public void onError(Throwable e) {
-                // TODO Delete logger
-                Log.e("CustomerListPresenter", e.toString());
-                getView().showErrorMessage(e);
+                if (repository.isCustomersEmpty()) {
+                    getView().setErrorState(e);
+                } else {
+                    getView().showErrorMessage(e);
+                }
             }
 
             @Override

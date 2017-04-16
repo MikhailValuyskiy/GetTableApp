@@ -46,7 +46,6 @@ public abstract class BaseStateFragment<Presenter extends BaseStatePresenter> ex
 
     @Override
     public void setSuccessState() {
-        onViewStateChanged(ViewState.SUCCESS);
         if (content == null) {
             Log.e(TAG, BindingException.TAG, new BindingException());
             return;
@@ -57,7 +56,6 @@ public abstract class BaseStateFragment<Presenter extends BaseStatePresenter> ex
 
     @Override
     public void setEmptyState(@StringRes int stringId) {
-        onViewStateChanged(ViewState.EMPTY);
         if (content == null) {
             Log.e(TAG, BindingException.TAG, new BindingException());
             return;
@@ -71,7 +69,6 @@ public abstract class BaseStateFragment<Presenter extends BaseStatePresenter> ex
 
     @Override
     public void setErrorState(Throwable throwable) {
-        onViewStateChanged(ViewState.ERROR);
         if (content == null) {
             Log.e(TAG, BindingException.TAG, new BindingException());
             return;
@@ -87,7 +84,6 @@ public abstract class BaseStateFragment<Presenter extends BaseStatePresenter> ex
 
     @Override
     public void showErrorMessage(Throwable throwable) {
-        onViewStateChanged(ViewState.ERROR);
         if (content == null) {
             Log.e(TAG, BindingException.TAG, new BindingException());
             return;
@@ -117,7 +113,6 @@ public abstract class BaseStateFragment<Presenter extends BaseStatePresenter> ex
 
     @Override
     public void setPendingState() {
-        onViewStateChanged(ViewState.PENDING);
         if (content == null) {
             Log.e(TAG, BindingException.TAG, new BindingException("content == null"));
             return;
@@ -130,10 +125,6 @@ public abstract class BaseStateFragment<Presenter extends BaseStatePresenter> ex
         } else {
             showSnackBar(R.string.error_no_connection);
         }
-    }
-
-    public void onViewStateChanged(ViewState state) {
-
     }
 
     public void showSnackBar(@StringRes int message) {
@@ -165,8 +156,5 @@ public abstract class BaseStateFragment<Presenter extends BaseStatePresenter> ex
         return true;
     }
 
-    public enum ViewState {
-        PENDING, SUCCESS, ERROR, EMPTY
-    }
 }
 

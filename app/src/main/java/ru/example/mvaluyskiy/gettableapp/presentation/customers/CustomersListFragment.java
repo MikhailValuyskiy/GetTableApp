@@ -1,5 +1,6 @@
 package ru.example.mvaluyskiy.gettableapp.presentation.customers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import ru.example.mvaluyskiy.gettableapp.GetTableApplication;
 import ru.example.mvaluyskiy.gettableapp.R;
 import ru.example.mvaluyskiy.gettableapp.base.base_fragments.BaseStateFragment;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
+import ru.example.mvaluyskiy.gettableapp.presentation.tables.TablesActivity;
 import ru.example.mvaluyskiy.gettableapp.ui.DividerItemDecoration;
 
 /**
@@ -69,7 +71,7 @@ public class CustomersListFragment extends BaseStateFragment<CustomersListPresen
         customersAdapter = new CustomersAdapter(Collections.EMPTY_LIST, new CustomersAdapter.CustomerClickListener() {
             @Override
             public void onCustomerClicked(Customer customer) {
-                // TODO open table screen
+                startActivity(new Intent(getActivity(), TablesActivity.class));
             }
         });
 

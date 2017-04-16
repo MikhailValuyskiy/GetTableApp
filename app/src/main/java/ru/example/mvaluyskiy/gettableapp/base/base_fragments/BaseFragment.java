@@ -1,7 +1,6 @@
 package ru.example.mvaluyskiy.gettableapp.base.base_fragments;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
@@ -15,7 +14,6 @@ import ru.example.mvaluyskiy.gettableapp.base.base_views.BaseView;
 
 public abstract class BaseFragment<Presenter extends BasePresenter> extends Fragment implements BaseView {
 
-    private static final String KEY_VIEW_STATE = "key_view_state";
     private Presenter presenter;
     protected Unbinder unbinder;
 
@@ -43,16 +41,11 @@ public abstract class BaseFragment<Presenter extends BasePresenter> extends Frag
     public void onStart() {
         super.onStart();
         presenter.onStart();
-        Parcelable viewState = getArguments().getParcelable(KEY_VIEW_STATE);
-        if (viewState != null) {
-            onRestoreViewState(viewState);
-        }
     }
 
     @Override
     public void onStop() {
         presenter.onStop();
-        getArguments().putParcelable(KEY_VIEW_STATE, onSaveViewState());
         super.onStop();
     }
 
@@ -74,18 +67,6 @@ public abstract class BaseFragment<Presenter extends BasePresenter> extends Frag
             unbinder.unbind();
         }
         super.onDestroyView();
-    }
-
-    protected void onRestoreViewState(Parcelable viewState) {
-
-    }
-
-    protected Parcelable onSaveViewState() {
-        return null;
-    }
-
-    public String getFragmentTag() {
-        return BaseFragment.class.getName();
     }
 }
 

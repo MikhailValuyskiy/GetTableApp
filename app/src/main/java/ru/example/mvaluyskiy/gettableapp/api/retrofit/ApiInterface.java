@@ -14,4 +14,7 @@ public interface ApiInterface {
 
     @GET("quandoo-assessment/customer-list.json")
     Observable<List<CustomerDto>> getCustomers();
+
+    @GET("quandoo-assessment/table-map.json")
+    Observable<List<Boolean>> getTables();
 }
