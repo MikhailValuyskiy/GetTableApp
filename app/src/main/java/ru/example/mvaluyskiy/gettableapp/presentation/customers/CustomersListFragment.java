@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -74,7 +73,7 @@ public class CustomersListFragment extends BaseStateFragment<CustomersListPresen
         customersRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), R.drawable.divider));
 
 
-        customersAdapter = new CustomersAdapter(Collections.EMPTY_LIST, new CustomersAdapter.CustomerClickListener() {
+        customersAdapter = new CustomersAdapter(new CustomersAdapter.CustomerClickListener() {
             @Override
             public void onCustomerClicked(Customer customer) {
                 startActivity(new Intent(getActivity(), TablesActivity.class));

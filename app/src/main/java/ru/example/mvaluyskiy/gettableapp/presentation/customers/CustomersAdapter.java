@@ -25,7 +25,7 @@ public class CustomersAdapter extends RecyclerView.Adapter<CustomersAdapter.Cust
     private final CustomerClickListener customerClickListener;
     private final List<Customer> customers = new ArrayList<>();
 
-    public CustomersAdapter( @NonNull CustomerClickListener listener) {
+    public CustomersAdapter(@NonNull CustomerClickListener listener) {
         this.customerClickListener = listener;
     }
 
