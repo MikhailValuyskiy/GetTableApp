@@ -39,4 +39,10 @@ public class TablesActivity extends BaseActivity {
         IntentFilter intentFilter = new IntentFilter(BROADCAST_ACTION_UPDATE);
         registerReceiver(receiver, intentFilter);
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
+    }
 }
