@@ -62,4 +62,6 @@ dependencies {
     compile "com.j256.ormlite:ormlite-android:$ormLiteVersion"
 
     testCompile 'junit:junit:4.12'
+    testCompile "org.robolectric:robolectric:3.3.2"
+    testCompile "org.mockito:mockito-core:2.+"
 }

@@ -5,9 +5,6 @@ import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import ru.example.mvaluyskiy.gettableapp.GetTableApplication;
 import ru.example.mvaluyskiy.gettableapp.data.dao.TableDao;
 import ru.example.mvaluyskiy.gettableapp.data.database.OrmLiteDatabaseHelper;
 import ru.example.mvaluyskiy.gettableapp.data.vo.Customer;
@@ -20,17 +17,40 @@ import rx.Observable;
 
 public class LocalRepository implements AppDataStore {
 
-    @Inject
     OrmLiteDatabaseHelper ormLiteDatabaseHelper;
 
-    public LocalRepository() {
-        GetTableApplication.getAppComponent().inject(this);
+    public LocalRepository(OrmLiteDatabaseHelper ormLiteDatabaseHelper) {
+        this.ormLiteDatabaseHelper = ormLiteDatabaseHelper;
     }
 
-    @Override
-    public Observable<List<Customer>> getCustomers() {
+    public void saveCustomers(List<Customer> list) {
         try {
-            return Observable.just(ormLiteDatabaseHelper.getCustomerDao().getCustomers());
+            ormLiteDatabaseHelper.getCustomerDao().saveOrUpdate(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveTables(List<Table> list) {
+        try {
+            ormLiteDatabaseHelper.getTableDao().saveOrUpdate(list);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Table> getTables() {
+        try {
+            return ormLiteDatabaseHelper.getTableDao().getTables();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Customer> getCustomers() {
+        try {
+            return ormLiteDatabaseHelper.getCustomerDao().getCustomers();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -38,13 +58,13 @@ public class LocalRepository implements AppDataStore {
     }
 
     @Override
-    public Observable<List<Table>> getTables() {
-        try {
-            return Observable.just(ormLiteDatabaseHelper.getTableDao().getTables());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public Observable<List<Customer>> getCustomersObservable() {
+        return Observable.just(getCustomers());
+    }
+
+    @Override
+    public Observable<List<Table>> getTablesObservable() {
+        return Observable.just(getTables());
     }
 
     @Override
@@ -78,8 +98,8 @@ public class LocalRepository implements AppDataStore {
     public void clearReservations() {
         try {
             UpdateBuilder<Table, Integer> tableUpdateBuilder = ormLiteDatabaseHelper.getTableDao().updateBuilder();
-            tableUpdateBuilder.updateColumnValue(TableDao.COLUMN_STATUS, false);
-            tableUpdateBuilder.where().eq(TableDao.COLUMN_STATUS, true);
+            tableUpdateBuilder.updateColumnValue(TableDao.COLUMN_STATUS, true);
+            tableUpdateBuilder.where().eq(TableDao.COLUMN_STATUS, false);
             tableUpdateBuilder.update();
         } catch (SQLException e) {
             e.printStackTrace();

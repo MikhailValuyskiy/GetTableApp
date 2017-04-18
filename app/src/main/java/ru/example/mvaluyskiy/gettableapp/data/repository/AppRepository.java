@@ -26,13 +26,13 @@ public class AppRepository implements AppDataStore {
     }
 
     @Override
-    public Observable<List<Customer>> getCustomers() {
-        return localRepository.getCustomers().concatWith(remoteRepository.getCustomers());
+    public Observable<List<Customer>> getCustomersObservable() {
+        return localRepository.getCustomersObservable().concatWith(remoteRepository.getCustomersObservable());
     }
 
     @Override
-    public Observable<List<Table>> getTables() {
-        return localRepository.getTables().concatWith(remoteRepository.getTables());
+    public Observable<List<Table>> getTablesObservable() {
+        return localRepository.getTablesObservable().concatWith(remoteRepository.getTablesObservable());
     }
 
     @Override
@@ -49,7 +49,7 @@ public class AppRepository implements AppDataStore {
     }
 
     public Observable<List<Table>> getCachedTables() {
-        return localRepository.getTables();
+        return localRepository.getTablesObservable();
     }
 
     @Override

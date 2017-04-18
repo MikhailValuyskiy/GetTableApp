@@ -49,7 +49,7 @@ public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder
                     Table selectedTable = tables.get(getAdapterPosition());
                     selectedTable.setFree(!selectedTable.isFree());
                     listener.onTableClicked(selectedTable);
-                    tableView.setSelected(selectedTable.isFree());
+                    tableView.setSelected(!selectedTable.isFree());
                 }
             });
         }
@@ -57,7 +57,7 @@ public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(TablesAdapter.ViewHolder viewHolder, final int i) {
-        viewHolder.tableView.setSelected(tables.get(i).isFree());
+        viewHolder.tableView.setSelected(!tables.get(i).isFree());
     }
 
 

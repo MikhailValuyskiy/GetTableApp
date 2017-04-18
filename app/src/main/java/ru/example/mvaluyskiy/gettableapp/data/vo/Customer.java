@@ -20,6 +20,10 @@ public class Customer {
     @DatabaseField(columnName = CustomerDao.COLUMN_LAST_NAME)
     private String lastName;
 
+    public long getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }

@@ -37,7 +37,7 @@ public class TableRefreshService extends Service {
     }
 
     private void startService() {
-        timer.scheduleAtFixedRate(new updateTask(), 0, PERIOD);
+        timer.scheduleAtFixedRate(new updateTask(), PERIOD, PERIOD);
     }
 
     private class updateTask extends TimerTask {

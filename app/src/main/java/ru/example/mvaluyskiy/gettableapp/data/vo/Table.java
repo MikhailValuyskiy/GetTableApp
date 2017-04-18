@@ -29,6 +29,10 @@ public class Table {
         this.isFree = isFree;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public boolean isFree() {
         return isFree;
     }

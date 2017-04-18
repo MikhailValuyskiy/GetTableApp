@@ -33,7 +33,6 @@ public class CustomersListFragment extends BaseStateFragment<CustomersListPresen
     @BindView(R.id.content)
     RecyclerView customersRecyclerView;
 
-
     public CustomersListFragment() {
     }
 

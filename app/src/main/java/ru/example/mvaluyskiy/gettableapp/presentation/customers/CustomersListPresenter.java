@@ -35,7 +35,7 @@ public class CustomersListPresenter extends BaseStatePresenter<CustomersView> {
 
     public void loadCustomers() {
         getView().setPendingState();
-        subscribe(repository.getCustomers(), new Subscriber<List<Customer>>() {
+        subscribe(repository.getCustomersObservable(), new Subscriber<List<Customer>>() {
             @Override
             public void onCompleted() {
 

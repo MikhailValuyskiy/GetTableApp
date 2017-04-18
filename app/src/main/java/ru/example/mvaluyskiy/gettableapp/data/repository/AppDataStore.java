@@ -12,9 +12,9 @@ import rx.Observable;
 
 public interface AppDataStore {
 
-    Observable<List<Customer>> getCustomers();
+    Observable<List<Customer>> getCustomersObservable();
 
-    Observable<List<Table>> getTables();
+    Observable<List<Table>> getTablesObservable();
 
     void bookTable(Table table);
 

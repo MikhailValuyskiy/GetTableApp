@@ -6,7 +6,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ru.example.mvaluyskiy.gettableapp.api.retrofit.ApiInterface;
 import ru.example.mvaluyskiy.gettableapp.data.database.OrmLiteDatabaseHelper;
+import ru.example.mvaluyskiy.gettableapp.data.mappers.CustomerMapper;
+import ru.example.mvaluyskiy.gettableapp.data.mappers.TableMapper;
 import ru.example.mvaluyskiy.gettableapp.data.repository.AppRepository;
 import ru.example.mvaluyskiy.gettableapp.data.repository.LocalRepository;
 import ru.example.mvaluyskiy.gettableapp.data.repository.RemoteRepository;
@@ -26,14 +29,17 @@ public class DataModule {
 
     @Provides
     @Singleton
-    LocalRepository provideLocalRepository() {
-        return new LocalRepository();
+    LocalRepository provideLocalRepository(OrmLiteDatabaseHelper helper) {
+        return new LocalRepository(helper);
     }
 
     @Provides
     @Singleton
-    RemoteRepository provideRemoteRepository() {
-        return new RemoteRepository();
+    RemoteRepository provideRemoteRepository(ApiInterface apiInterface,
+                                             CustomerMapper customerMapper,
+                                             TableMapper tableMapper,
+                                             LocalRepository localRepository) {
+        return new RemoteRepository(apiInterface, customerMapper, tableMapper, localRepository);
     }
 
     @Provides

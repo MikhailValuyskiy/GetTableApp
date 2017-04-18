@@ -61,7 +61,7 @@ public class TablesPresenter extends BaseStatePresenter<TablesView> {
 
     private void loadTables() {
         getView().setPendingState();
-        subscribe(appRepository.getTables(), new Subscriber<List<Table>>() {
+        subscribe(appRepository.getTablesObservable(), new Subscriber<List<Table>>() {
             @Override
             public void onCompleted() {
 
