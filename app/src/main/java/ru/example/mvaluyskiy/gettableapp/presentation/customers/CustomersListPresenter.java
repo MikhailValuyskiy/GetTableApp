@@ -1,5 +1,6 @@
 package ru.example.mvaluyskiy.gettableapp.presentation.customers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +15,8 @@ import rx.Subscriber;
  */
 
 public class CustomersListPresenter extends BaseStatePresenter<CustomersView> {
+
+    private List<Customer> customerList = new ArrayList<>();
 
     @Inject
     AppRepository repository;
@@ -31,6 +34,17 @@ public class CustomersListPresenter extends BaseStatePresenter<CustomersView> {
     public void onStart() {
         super.onStart();
         loadCustomers();
+    }
+
+    public void onSearchQuery(String query) {
+        String q = query.toUpperCase();
+        List<Customer> result = new ArrayList<>();
+        for (Customer item : customerList) {
+            if ((item.getFirstName().toUpperCase().contains(q)) || (item.getLastName().toUpperCase().contains(q))) {
+                result.add(item);
+            }
+        }
+        getView().onCustomersLoaded(result);
     }
 
     public void loadCustomers() {
@@ -52,6 +66,7 @@ public class CustomersListPresenter extends BaseStatePresenter<CustomersView> {
 
             @Override
             public void onNext(List<Customer> customers) {
+                customerList = customers;
                 getView().setSuccessState();
                 getView().onCustomersLoaded(customers);
             }

@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+import java.util.Collections;
 import java.util.List;
 
 import ru.example.mvaluyskiy.gettableapp.data.mappers.CustomerMapper;
@@ -65,5 +66,11 @@ public class CustomersListPresenterTest {
         when(appRepository.getCustomersObservable()).thenReturn(observable);
         presenter.onStart();
         verify(view, times(1)).setPendingState();
+    }
+
+    @Test
+    public void checkOnCustomersLoaded_isCalled() throws Exception {
+        presenter.onSearchQuery("Marilyn");
+        verify(view,times(1)).onCustomersLoaded(Collections.EMPTY_LIST);
     }
 }

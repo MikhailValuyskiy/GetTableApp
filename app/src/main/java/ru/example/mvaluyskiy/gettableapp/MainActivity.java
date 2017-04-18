@@ -14,4 +14,5 @@ public class MainActivity extends BaseActivity {
 
         showFragment(CustomersListFragment.newInstance());
     }
+
 }

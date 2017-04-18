@@ -15,4 +15,8 @@
     <!-- Description -->
     <string name="table_view_description">Table</string>
 
+    <!-- Menu -->
+    <string name="action_search">Search</string>
+
+
 </resources>

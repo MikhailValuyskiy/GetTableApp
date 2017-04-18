@@ -13,5 +13,4 @@ public interface CustomersView extends BaseStateView {
 
     void onCustomersLoaded(List<Customer> customerList);
 
-
 }
