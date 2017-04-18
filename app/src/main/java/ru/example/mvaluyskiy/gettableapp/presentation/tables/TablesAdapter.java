@@ -23,8 +23,7 @@ public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder
     private TableClickListener listener;
     private List<Table> tables = new ArrayList<>();
 
-    public TablesAdapter(List<Table> tables, TableClickListener listener) {
-        this.tables = tables;
+    public TablesAdapter(TableClickListener listener) {
         this.listener = listener;
     }
 

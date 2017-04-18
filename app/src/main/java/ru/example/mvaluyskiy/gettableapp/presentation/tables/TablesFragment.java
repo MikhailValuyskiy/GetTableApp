@@ -57,13 +57,7 @@ public class TablesFragment extends BaseStateFragment<TablesPresenter> implement
         View rootView = inflater.inflate(R.layout.fragment_tables, container, false);
         unbinder = ButterKnife.bind(this, rootView);
 
-        List<Table> tablesList = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            Table t = new Table();
-            tablesList.add(t);
-        }
-
-        tablesAdapter = new TablesAdapter(tablesList, new TablesAdapter.TableClickListener() {
+        tablesAdapter = new TablesAdapter(new TablesAdapter.TableClickListener() {
             @Override
             public void onTableClicked(Table table) {
                 bookTable(table);
